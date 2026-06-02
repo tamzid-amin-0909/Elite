@@ -1,6 +1,6 @@
 // Execute immediately to prevent the original page content from flashing
 (function() {
-    const targetUA = "EduZod/1.0";
+    const targetUA = "";
     
     // IF the user agent does NOT contain the allowed string
     if (!navigator.userAgent.includes(targetUA)) {
