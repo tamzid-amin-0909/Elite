@@ -33,5 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } catch(e) { /* network blip — retry in 10s */ }
-    }, 10000);
+    }, 60000);
 });
