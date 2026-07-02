@@ -338,37 +338,46 @@ function renderVideo(item, siblings, keys, currentThumb) {
     app.innerHTML = html + `</div></div>`;
 
     // ── CAPTCHA GATE ON VIDEO LOAD ───────────────────────────────────────────
+    // if (item.url) {
+    //     const captureUrl = item.url;
+
+    //     const initializeVideoPlayer = () => {
+    //         requestAnimationFrame(() => {
+    //             setTimeout(() => {
+    //                 const el = document.getElementById('my-video-player');
+    //                 if (!el) return;
+
+    //                 el.dataset.encUrl = encryptURLForDOM(captureUrl);
+
+    //                 const videoUrl = decryptURLFromDOM(el.dataset.encUrl || '');
+    //                 if (!videoUrl) return;
+
+    //                 const p = new HardenedPlayer('#my-video-player', videoUrl);
+    //                 window._activePlayer = p;
+    //             }, 50);
+    //         });
+    //     };
+
+    //     // Create the gate container and render it centered on the viewport
+    //     const gate = createCaptchaGate(() => {
+    //         initializeVideoPlayer();
+    //     });
+
+    //     document.body.appendChild(gate);
+
+    //     // Instantly focus input for desktop/mobile interaction
+    //     setTimeout(() => {
+    //         const inp = document.getElementById('captcha-input');
+    //         if (inp) inp.focus();
+    //     }, 100);
+    // }
     if (item.url) {
-        const captureUrl = item.url;
-
-        const initializeVideoPlayer = () => {
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    const el = document.getElementById('my-video-player');
-                    if (!el) return;
-
-                    el.dataset.encUrl = encryptURLForDOM(captureUrl);
-
-                    const videoUrl = decryptURLFromDOM(el.dataset.encUrl || '');
-                    if (!videoUrl) return;
-
-                    const p = new HardenedPlayer('#my-video-player', videoUrl);
-                    window._activePlayer = p;
-                }, 50);
-            });
-        };
-
-        // Create the gate container and render it centered on the viewport
-        const gate = createCaptchaGate(() => {
-            initializeVideoPlayer();
+        requestAnimationFrame(() => {
+            const el = document.getElementById("my-video-player");
+            if (!el) return;
+    
+            const p = new HardenedPlayer("#my-video-player", item.url);
+            window._activePlayer = p;
         });
-
-        document.body.appendChild(gate);
-
-        // Instantly focus input for desktop/mobile interaction
-        setTimeout(() => {
-            const inp = document.getElementById('captcha-input');
-            if (inp) inp.focus();
-        }, 100);
     }
 }
